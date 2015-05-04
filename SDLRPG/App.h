@@ -8,6 +8,7 @@
 
 #include "GameState.h"
 #include "Window.h"
+#include "Timer.h"
 
 class App {
 
@@ -17,7 +18,9 @@ public:
 	
 	void Init();
 	
-	const Uint8* KeyStates () { return keyStates; }
+	const Uint8* KeyStates () const { return keyStates; }
+	Uint32 TimeSinceStart () { return timeSinceStart.GetTicks (); }
+	float DeltaTime () const { return dt; }
 
 private:
 	App ();
@@ -36,6 +39,10 @@ private:
 
 	int windowWidth;
 	int windowHeight;
+
+	Timer timeSinceStart;
+	Timer deltaTimer;
+	float dt;
 };
 
 #endif //APP_H

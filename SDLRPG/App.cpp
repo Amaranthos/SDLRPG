@@ -1,9 +1,11 @@
 #include "App.h"
 
+#include <iostream>
+
 App* App::inst = nullptr;
 
-App::App () :windowWidth (960), windowHeight (720), appState(Uninitalized), window(Window()) {
-
+App::App () :windowWidth (960), windowHeight (720), appState(Uninitalized), window(Window()), timeSinceStart(Timer()), deltaTimer(Timer()), dt(0) {
+	
 }
 
 App::~App () {
@@ -61,6 +63,7 @@ bool App::InitSDL () {
 				success = false;
 			}
 			else printf ("Success: SDL_Mixer initialized!\n");
+			timeSinceStart.Start ();
 		}
 	}
 	return success;
@@ -82,9 +85,10 @@ void App::Update () {
 		}
 	}
 
-	window.Clear ();
+	dt = deltaTimer.GetTicks () / 1000.0f;
+	deltaTimer.Start ();
 
-	
+	window.Clear ();
 
 	window.Render ();
 }

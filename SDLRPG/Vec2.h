@@ -6,8 +6,6 @@ public:
 	Vec2 ();
 	~Vec2 ();
 
-
-
 	float X () { return x; }
 	float Y () { return y; }
 
