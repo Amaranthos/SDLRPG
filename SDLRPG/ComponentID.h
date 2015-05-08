@@ -1,8 +1,8 @@
 #ifndef COMPONENTID_H
 #define COMPONENTID_H
 
-enum ComponentID{
+enum class ComponentID{
 	Transform,
-
+	Sprite,
 };
 #endif //COMPONENTID_H

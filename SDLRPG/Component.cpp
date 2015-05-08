@@ -1,7 +1,8 @@
 #include "Component.h"
 
 
-Component::Component () {
+Component::Component (ComponentID id): id(id) {
+
 }
 
 

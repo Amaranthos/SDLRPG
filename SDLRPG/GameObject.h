@@ -4,19 +4,24 @@
 #include <vector>
 
 #include "ComponentID.h"
-#include "Component.h"
-#include "Transform.h"
+
+class Component;
+class Transform;
 
 class GameObject {
 public:
 	GameObject ();
 	virtual ~GameObject ();
 
-	Component *GetComponent (ComponentID id);
+	virtual void Update();
+	virtual void Free ();
+
+	Component* GetComponent (ComponentID id);
 	void AddComponent (Component* comp);
 	bool HasComponent (ComponentID id);
 
 private:
 	std::vector<Component*> components;
+	Transform* transform;
 };
 #endif //GAMEOBJECT_H

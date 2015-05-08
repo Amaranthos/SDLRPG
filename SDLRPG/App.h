@@ -9,6 +9,8 @@
 #include "GameState.h"
 #include "Window.h"
 #include "Timer.h"
+#include "PlayerController.h"
+#include "Sprite.h"
 
 class App {
 
