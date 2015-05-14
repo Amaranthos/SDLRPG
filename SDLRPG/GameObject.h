@@ -20,7 +20,7 @@ public:
 	void AddComponent (Component* comp);
 	bool HasComponent (ComponentID id);
 
-private:
+protected:
 	std::vector<Component*> components;
 	Transform* transform;
 };

@@ -1,5 +1,9 @@
 #include "Texture.h"
 
+#include "Window.h"
+#include "Colour.h"
+#include "Font.h"
+#include "Vec2.h"
 
 Texture::Texture () : width(0), height(0), texture(nullptr) {
 	
@@ -85,6 +89,17 @@ bool Texture::LoadFromRenderedText (const std::string& text, Colour textColour, 
 
 void Texture::Render (int posX, int posY, Window* window, SDL_Rect* clip, double angle, SDL_Point* centre, SDL_RendererFlip flip) {
 	SDL_Rect renderQuad = { posX, posY, width, height };
+
+	if (clip) {
+		renderQuad.w = clip->w;
+		renderQuad.h = clip->h;
+	}
+
+	SDL_RenderCopyEx (window->Renderer (), texture, clip, &renderQuad, angle, centre, flip);
+}
+
+void Texture::Render (Vec2* pos, Window* window, SDL_Rect* clip, double angle, SDL_Point* centre, SDL_RendererFlip flip) {
+	SDL_Rect renderQuad = { (int)pos->X(), (int)pos->Y(), width, height };
 
 	if (clip) {
 		renderQuad.w = clip->w;

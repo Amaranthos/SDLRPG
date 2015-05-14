@@ -7,9 +7,11 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
-#include "Window.h"
 #include "Colour.h"
-#include "Font.h"
+
+class Window;
+class Font;
+class Vec2;
 
 class Texture {
 public:
@@ -23,6 +25,7 @@ public:
 	#endif
 
 	void Render (int posX, int posY, Window* window, SDL_Rect* clip = nullptr, double angle = 0.0, SDL_Point* centre = nullptr, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	void Render (Vec2* pos, Window* window, SDL_Rect* clip = nullptr, double angle = 0.0, SDL_Point* centre = nullptr, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 	void SetColourTint (Colour colour);
 	void SetAlpha (Uint8 alpha);

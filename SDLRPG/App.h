@@ -7,10 +7,9 @@
 #include <SDL_mixer.h>
 
 #include "GameState.h"
-
-class Window;
-class Timer;
-class GameObjectManager;
+#include "Timer.h"
+#include "GameObjectManager.h"
+#include "Window.h"
 
 class App {
 

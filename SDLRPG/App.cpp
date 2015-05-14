@@ -2,9 +2,7 @@
 
 #include <iostream>
 
-#include "Window.h"
-#include "Timer.h"
-#include "GameObjectManager.h"
+#include "PlayerController.h"
 
 App* App::inst = nullptr;
 
@@ -29,9 +27,9 @@ void App::Init () {
 	if (!InitSDL ()) return;
 
 	appState = GameState::Playing;
-	//player = new PlayerController();
-	/*player->AddComponent(new Sprite());
-	static_cast<Sprite*>(player->GetComponent(ComponentID::Sprite))->LoadSprite("img/player.png");*/
+	PlayerController* player = new PlayerController();
+
+	goManager.Add ("Player", player);
 
 	while (!IsExiting ())
 		Update ();
