@@ -2,11 +2,13 @@
 
 #include <iostream>
 
+#include "Window.h"
+#include "Timer.h"
+#include "GameObjectManager.h"
+
 App* App::inst = nullptr;
 
-PlayerController* player = nullptr;
-
-App::App () :windowWidth (960), windowHeight (720), appState(Uninitalized), window(Window()), timeSinceStart(Timer()), deltaTimer(Timer()), dt(0) {
+App::App () :windowWidth (960), windowHeight (720), appState(Uninitalized), window(Window()), timeSinceStart(Timer()), deltaTimer(Timer()), goManager(GameObjectManager()), dt(0) {
 	
 }
 
@@ -27,9 +29,9 @@ void App::Init () {
 	if (!InitSDL ()) return;
 
 	appState = GameState::Playing;
-	player = new PlayerController();
-	player->AddComponent(new Sprite());
-	static_cast<Sprite*>(player->GetComponent(ComponentID::Sprite))->LoadSprite("img/player.png");
+	//player = new PlayerController();
+	/*player->AddComponent(new Sprite());
+	static_cast<Sprite*>(player->GetComponent(ComponentID::Sprite))->LoadSprite("img/player.png");*/
 
 	while (!IsExiting ())
 		Update ();
@@ -94,6 +96,8 @@ void App::Update () {
 	deltaTimer.Start ();
 
 	window.Clear ();
+
+	goManager.UpdateAll ();
 
 	window.Render ();
 }

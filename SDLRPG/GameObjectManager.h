@@ -13,10 +13,9 @@ public:
 
 	void Add (std::string name, GameObject* go);
 	void Remove (std::string name);
-	GameObject* Find (std::string name);
+	GameObject* Find (std::string name) const;
 
 	void UpdateAll ();
-
 
 	int Count () const { return count; }
 

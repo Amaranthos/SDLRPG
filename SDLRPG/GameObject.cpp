@@ -35,3 +35,7 @@ void GameObject::Free () {
 
 	if (transform) delete transform;
 }
+
+void GameObject::Update () {
+
+}

@@ -7,16 +7,17 @@
 #include <SDL_mixer.h>
 
 #include "GameState.h"
-#include "Window.h"
-#include "Timer.h"
-#include "PlayerController.h"
-#include "Sprite.h"
+
+class Window;
+class Timer;
+class GameObjectManager;
 
 class App {
 
 public:
 	static App* GetInst ();
 	Window* GetWindow() { return &window; }
+	GameObjectManager* GetGOManager() { return &goManager; }
 	
 	void Init();
 	
@@ -36,6 +37,7 @@ private:
 	static App* inst;
 	Window window;
 	GameState appState;
+	GameObjectManager goManager;
 
 	const Uint8* keyStates;
 
