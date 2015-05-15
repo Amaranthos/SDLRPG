@@ -2,8 +2,8 @@
 
 
 Transform::Transform ():Component(ComponentID::Transform) {
-	position.X (0);
-	position.Y (0);
+	position.x = 0;
+	position.y = 0;
 }
 
 

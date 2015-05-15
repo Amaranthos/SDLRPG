@@ -99,7 +99,7 @@ void Texture::Render (int posX, int posY, Window* window, SDL_Rect* clip, double
 }
 
 void Texture::Render (Vec2* pos, Window* window, SDL_Rect* clip, double angle, SDL_Point* centre, SDL_RendererFlip flip) {
-	SDL_Rect renderQuad = { (int)pos->X(), (int)pos->Y(), width, height };
+	SDL_Rect renderQuad = { (int)pos->x, (int)pos->y, width, height };
 
 	if (clip) {
 		renderQuad.w = clip->w;

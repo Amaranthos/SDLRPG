@@ -39,7 +39,7 @@ void App::Init () {
 
 bool App::InitSDL () {
 	bool success = true;
-
+ 
 	if (SDL_Init (SDL_INIT_EVERYTHING) < 0) {
 		printf ("Warning: SDL could not init! SDL Srror: %s\n", SDL_GetError ());
 		success = false;

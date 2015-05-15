@@ -23,7 +23,9 @@ public:
 	const Uint8* KeyStates () const { return keyStates; }
 	Uint32 TimeSinceStart () { return timeSinceStart.GetTicks (); }
 	float DeltaTime () const { return dt; }
-
+	
+	int WindowWidth () const { return windowWidth; }
+	int WindowHeight () const { return windowHeight; }
 private:
 	App ();
 	~App ();
