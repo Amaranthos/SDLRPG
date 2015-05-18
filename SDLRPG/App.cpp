@@ -6,7 +6,7 @@
 
 App* App::inst = nullptr;
 
-App::App () :windowWidth (960), windowHeight (720), appState(Uninitalized), window(Window()), timeSinceStart(Timer()), deltaTimer(Timer()), goManager(GameObjectManager()), dt(0) {
+App::App () :windowWidth (960), windowHeight (720), appState(Uninitalized), window(Window()), timeSinceStart(Timer()), deltaTimer(Timer()), goManager(GameObjectManager()), mainCam(Camera(windowWidth, windowHeight)), dt(0) {
 	
 }
 

@@ -11,7 +11,7 @@
 
 class Window;
 class Font;
-class Vec2;
+struct Vec2;
 
 class Texture {
 public:

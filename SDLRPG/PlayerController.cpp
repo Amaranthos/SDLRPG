@@ -8,8 +8,8 @@
 
 PlayerController::PlayerController () {
 	AddComponent (new Sprite ());
-	static_cast<Sprite*>(GetComponent (ComponentID::Sprite))->LoadSprite ("img/player.png");
-
+	GetComponent<Sprite> (ComponentID::Sprite)->LoadSprite("img/player.png");
+	
 	dVel.x = 0;
 	dVel.y = 0;
 }
@@ -20,17 +20,16 @@ PlayerController::~PlayerController () {
 }
 
 void PlayerController::Update() {
-	if (App::GetInst()->KeyStates()[SDL_SCANCODE_W]) dVel.y += Velocity;
-	else dVel.y -= Velocity;
+	dVel.x = 0;
+	dVel.y = 0;
 
-	if (App::GetInst ()->KeyStates ()[SDL_SCANCODE_A]) dVel.x -= Velocity;
-	else dVel.x += Velocity;
+	if (App::GetInst()->KeyStates()[SDL_SCANCODE_W]) dVel.y = -Velocity;
 
-	if (App::GetInst ()->KeyStates ()[SDL_SCANCODE_S]) dVel.y -= Velocity;
-	else dVel.y += Velocity;
+	if (App::GetInst ()->KeyStates ()[SDL_SCANCODE_A]) dVel.x = -Velocity;
 
-	if (App::GetInst ()->KeyStates ()[SDL_SCANCODE_D]) dVel.x += Velocity;
-	else dVel.x -= Velocity;
+	if (App::GetInst ()->KeyStates ()[SDL_SCANCODE_S]) dVel.y = Velocity;
+
+	if (App::GetInst ()->KeyStates ()[SDL_SCANCODE_D]) dVel.x = Velocity;
 
 	transform->position.x += dVel.x * App::GetInst ()->DeltaTime ();
 
@@ -44,5 +43,7 @@ void PlayerController::Update() {
 
 	if (transform->position.y > (App::GetInst ()->WindowHeight() - Height)) transform->position.y = (App::GetInst ()->WindowHeight() - Height);
 
-	static_cast<Sprite*>(GetComponent (ComponentID::Sprite))->GetTexture()->Render(&transform->position, App::GetInst()->GetWindow());
+	App::GetInst ()->MainCamera ()->PositionCam ((transform->position.x + Width / 2) - App::GetInst ()->WindowWidth() / 2, (transform->position.y + Height / 2) - App::GetInst()->WindowHeight() / 2);
+
+	GetComponent<Sprite> (ComponentID::Sprite)->GetTexture ()->Render (App::GetInst ()->MainCamera ()->View ()->x, App::GetInst ()->MainCamera ()->View ()->y, App::GetInst ()->GetWindow ());
 }

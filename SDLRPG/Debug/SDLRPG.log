@@ -1,12 +1,25 @@
-﻿Build started 15/05/2015 1:04:10 PM.
+﻿Build started 19/05/2015 9:37:18 AM.
      1>Project "J:\Projects\Games\SDLRPG\SDLRPG\SDLRPG.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"J:\Projects\Games\SDLRPG\SDLRPG\\Debug\\" /Fd"J:\Projects\Games\SDLRPG\SDLRPG\\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameObjectManager.cpp
-         GameObjectManager.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"J:\Projects\Games\SDLRPG\SDLRPG\\Debug\\" /Fd"J:\Projects\Games\SDLRPG\SDLRPG\\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt App.cpp PlayerController.cpp Sprite.cpp Texture.cpp main.cpp
+         main.cpp
      1>j:\projects\games\sdlrpg\sdlrpg\gameobjectmanager.h(28): warning C4150: deletion of pointer to incomplete type 'GameObject'; no destructor called
                  j:\projects\games\sdlrpg\sdlrpg\gameobjectmanager.h(7) : see declaration of 'GameObject'
+         Texture.cpp
+         Sprite.cpp
+     1>j:\projects\games\sdlrpg\sdlrpg\gameobjectmanager.h(28): warning C4150: deletion of pointer to incomplete type 'GameObject'; no destructor called
+                 j:\projects\games\sdlrpg\sdlrpg\gameobjectmanager.h(7) : see declaration of 'GameObject'
+         PlayerController.cpp
+     1>j:\projects\games\sdlrpg\sdlrpg\playercontroller.cpp(38): warning C4244: '=' : conversion from 'const int' to 'float', possible loss of data
+     1>j:\projects\games\sdlrpg\sdlrpg\playercontroller.cpp(44): warning C4244: '=' : conversion from 'const int' to 'float', possible loss of data
+     1>j:\projects\games\sdlrpg\sdlrpg\playercontroller.cpp(46): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         App.cpp
+     1>j:\projects\games\sdlrpg\sdlrpg\gameobjectmanager.h(28): warning C4150: deletion of pointer to incomplete type 'GameObject'; no destructor called
+                 j:\projects\games\sdlrpg\sdlrpg\gameobjectmanager.h(7) : see declaration of 'GameObject'
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"J:\Projects\Games\SDLRPG\SDLRPG\SDLRPG.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"J:\Projects\Games\SDLRPG\SDLRPG\SDLRPG.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"J:\Projects\Games\SDLRPG\SDLRPG\SDLRPG.lib" /MACHINE:X86 J:\Projects\Games\SDLRPG\SDLRPG\\Debug\App.obj
+         J:\Projects\Games\SDLRPG\SDLRPG\\Debug\Camera.obj
          J:\Projects\Games\SDLRPG\SDLRPG\\Debug\Colour.obj
          J:\Projects\Games\SDLRPG\SDLRPG\\Debug\Component.obj
          J:\Projects\Games\SDLRPG\SDLRPG\\Debug\Font.obj
@@ -25,4 +38,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.77
+Time Elapsed 00:00:04.30

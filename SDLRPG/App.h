@@ -10,6 +10,7 @@
 #include "Timer.h"
 #include "GameObjectManager.h"
 #include "Window.h"
+#include "Camera.h"
 
 class App {
 
@@ -17,9 +18,13 @@ public:
 	static App* GetInst ();
 	Window* GetWindow() { return &window; }
 	GameObjectManager* GetGOManager() { return &goManager; }
+	Camera* MainCamera () { return &mainCam; }
 	
 	void Init();
 	
+	const static int levelWidth = 1920;
+	const static int levelHeight = 1080;
+
 	const Uint8* KeyStates () const { return keyStates; }
 	Uint32 TimeSinceStart () { return timeSinceStart.GetTicks (); }
 	float DeltaTime () const { return dt; }
@@ -39,6 +44,7 @@ private:
 	Window window;
 	GameState appState;
 	GameObjectManager goManager;
+	Camera mainCam;
 
 	const Uint8* keyStates;
 
