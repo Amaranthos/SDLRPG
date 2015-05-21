@@ -82,6 +82,7 @@ void App::Update () {
 	SDL_Event event;
 
 	keyStates = SDL_GetKeyboardState(NULL);
+	if (keyStates[SDL_SCANCODE_ESCAPE]) appState = Exiting;
 
 	while (SDL_PollEvent (&event) != 0) {
 		switch (appState) {
@@ -93,6 +94,7 @@ void App::Update () {
 			break;		
 		}
 	}
+
 
 	dt = deltaTimer.GetTicks () / 1000.0f;
 	deltaTimer.Start ();

@@ -5,6 +5,8 @@ struct Vec2 {
 	float x;
 	float y;
 
-
+	float Length ();
+	Vec2 Normalized ();
+	void Normalize ();
 };
-#endif //VEC@_H
+#endif //VEC2_H

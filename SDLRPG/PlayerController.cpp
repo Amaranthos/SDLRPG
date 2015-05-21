@@ -23,21 +23,23 @@ void PlayerController::Update() {
 	dVel.x = 0;
 	dVel.y = 0;
 
-	if (App::GetInst()->KeyStates()[SDL_SCANCODE_W]) dVel.y = -Velocity;
+	if (App::GetInst()->KeyStates()[SDL_SCANCODE_W]) dVel.y = -1;
 
-	if (App::GetInst ()->KeyStates ()[SDL_SCANCODE_A]) dVel.x = -Velocity;
+	if (App::GetInst ()->KeyStates ()[SDL_SCANCODE_A]) dVel.x = -1;
 
-	if (App::GetInst ()->KeyStates ()[SDL_SCANCODE_S]) dVel.y = Velocity;
+	if (App::GetInst ()->KeyStates ()[SDL_SCANCODE_S]) dVel.y = 1;
 
-	if (App::GetInst ()->KeyStates ()[SDL_SCANCODE_D]) dVel.x = Velocity;
+	if (App::GetInst ()->KeyStates ()[SDL_SCANCODE_D]) dVel.x = 1;
 
-	transform->position.x += dVel.x * App::GetInst ()->DeltaTime ();
+	dVel.Normalize ();
+
+	transform->position.x += dVel.x * Velocity * App::GetInst ()->DeltaTime ();
 
 	if (transform->position.x < 0) transform->position.x = 0;
 
 	if (transform->position.x > (App::GetInst ()->levelWidth - Width)) transform->position.x = (App::GetInst ()->levelWidth - Width);
 
-	transform->position.y += dVel.y * App::GetInst ()->DeltaTime ();
+	transform->position.y += dVel.y * Velocity * App::GetInst ()->DeltaTime ();
 
 	if (transform->position.y < 0) transform->position.y = 0;
 
