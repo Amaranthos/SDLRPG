@@ -3,11 +3,13 @@
 #include <iostream>
 
 #include "PlayerController.h"
+#include "Texture.h"
 
 App* App::inst = nullptr;
+Texture* texture = new Texture ();
 
-App::App () :windowWidth (960), windowHeight (720), appState(Uninitalized), window(Window()), timeSinceStart(Timer()), deltaTimer(Timer()), goManager(GameObjectManager()), mainCam(Camera(windowWidth, windowHeight)), dt(0) {
-	
+App::App () : windowWidth (960), windowHeight (720), appState(Uninitalized), window(Window()), timeSinceStart(Timer()), deltaTimer(Timer()), goManager(GameObjectManager()), mainCam(Camera(960, 720)), dt(0) {
+
 }
 
 App::~App () {
@@ -30,6 +32,8 @@ void App::Init () {
 	PlayerController* player = new PlayerController();
 
 	goManager.Add ("Player", player);
+
+	texture->LoadFromFile ("img/bg.png", GetWindow());
 
 	while (!IsExiting ())
 		Update ();
@@ -95,6 +99,8 @@ void App::Update () {
 
 	window.Clear ();
 
+	texture->Render (0, 0, &window, mainCam.View());
+
 	goManager.UpdateAll ();
 
 	window.Render ();
@@ -102,6 +108,8 @@ void App::Update () {
 
 void App::Close () {
 	window.Free ();
+
+	texture->Free ();
 
 	Mix_Quit ();
 	IMG_Quit ();

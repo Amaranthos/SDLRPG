@@ -22,8 +22,8 @@ public:
 	
 	void Init();
 	
-	const static int levelWidth = 1920;
-	const static int levelHeight = 1080;
+	const static int levelWidth = 1280;
+	const static int levelHeight = 960;
 
 	const Uint8* KeyStates () const { return keyStates; }
 	Uint32 TimeSinceStart () { return timeSinceStart.GetTicks (); }

@@ -11,7 +11,6 @@ public:
 	~Camera ();
 
 	void PositionCam(int x, int y);
-	void MoveCam (int x, int y);
 
 	void CheckBounds ();
 

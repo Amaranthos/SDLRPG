@@ -14,13 +14,6 @@ Camera::~Camera () {
 
 }
 
-void Camera::MoveCam (int x, int y) {
-	view.x -= x;
-	view.y -= y;
-
-	CheckBounds ();
-}
-
 void Camera::PositionCam (int x, int y) {
 	view.x = x;
 	view.y = y;
