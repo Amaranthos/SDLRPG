@@ -8,7 +8,7 @@
 App* App::inst = nullptr;
 Texture* texture = new Texture ();
 
-App::App () : windowWidth (960), windowHeight (720), appState(Uninitalized), window(Window()), timeSinceStart(Timer()), deltaTimer(Timer()), goManager(GameObjectManager()), mainCam(Camera(960, 720)), dt(0) {
+App::App () : windowWidth (960), windowHeight (720), appState(Uninitalized), window(Window()), timeSinceStart(Timer()), deltaTimer(Timer()), goManager(GameObjectManager()), textureManager(TextureManager()), mainCam(Camera(960, 720)), dt(0) {
 
 }
 
@@ -29,7 +29,11 @@ void App::Init () {
 	if (!InitSDL ()) return;
 
 	appState = GameState::Playing;
+
 	PlayerController* player = new PlayerController();
+
+	currentLevel = new Level (10, 10);
+	currentLevel->LoadLevel ();
 
 	goManager.Add ("Player", player);
 
@@ -102,7 +106,7 @@ void App::Update () {
 	window.Clear ();
 
 	texture->Render (0, 0, &window, mainCam.View());
-
+	currentLevel->Draw ();
 	goManager.UpdateAll ();
 
 	window.Render ();
@@ -121,4 +125,33 @@ void App::Close () {
 
 bool App::IsExiting () {
 	return appState == Exiting;
+}
+
+bool CheckCollision (SDL_Rect& a, SDL_Rect& b) {
+	//The sides of the rectangles
+	int leftA, leftB;
+	int rightA, rightB;
+	int topA, topB;
+	int bottomA, bottomB;
+
+	//Calculate the sides of rect A
+	leftA = a.x;
+	rightA = a.x + a.w;
+	topA = a.y;
+	bottomA = a.y + a.h;
+
+	//Calculate the sides of rect B
+	leftB = b.x;
+	rightB = b.x + b.w;
+	topB = b.y;
+	bottomB = b.y + b.h;
+
+	//If any of the sides from A are outside of B
+	if (bottomA <= topB) return false;
+	if (topA >= bottomB) return false;
+	if (rightA <= leftB) return false;
+	if (leftA >= rightB) return false;
+
+	//If none of the sides from A are outside B
+	return true;
 }

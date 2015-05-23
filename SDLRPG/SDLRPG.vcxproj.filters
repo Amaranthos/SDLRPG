@@ -37,6 +37,15 @@
     <Filter Include="Header Files\Editor">
       <UniqueIdentifier>{08317ca7-f390-452a-b0d6-7ee59157485c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Engine\Levels">
+      <UniqueIdentifier>{2baa7ffe-e58c-4cd3-a904-6fe0712317f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Serialization">
+      <UniqueIdentifier>{0578690d-0430-47a6-a812-d2909a523254}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Util\Managers">
+      <UniqueIdentifier>{a96dceb8-bfd6-4fb5-a2ec-2952cc501865}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
@@ -84,6 +93,18 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameState.h">
@@ -128,11 +149,23 @@
     <ClInclude Include="App.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectManager.h">
-      <Filter>Header Files\Engine\Util</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files\Engine\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Header Files\Engine\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files\Engine\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="MapParser.h">
+      <Filter>Header Files\Engine\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>Header Files\Engine\Util\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Header Files\Engine\Util\Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

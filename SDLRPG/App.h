@@ -7,10 +7,15 @@
 #include <SDL_mixer.h>
 
 #include "GameState.h"
-#include "Timer.h"
+
 #include "GameObjectManager.h"
+#include "TextureManager.h"
+
+#include "Timer.h"
 #include "Window.h"
 #include "Camera.h"
+
+#include "Level.h"
 
 class App {
 
@@ -18,6 +23,7 @@ public:
 	static App* GetInst ();
 	Window* GetWindow() { return &window; }
 	GameObjectManager* GetGOManager() { return &goManager; }
+	TextureManager* GetTextureManager () { return &textureManager; }
 	Camera* MainCamera () { return &mainCam; }
 	
 	void Init();
@@ -43,8 +49,12 @@ private:
 	static App* inst;
 	Window window;
 	GameState appState;
-	GameObjectManager goManager;
 	Camera mainCam;
+
+	GameObjectManager goManager;
+	TextureManager textureManager;
+
+	Level* currentLevel;
 
 	const Uint8* keyStates;
 
@@ -56,4 +66,5 @@ private:
 	float dt;
 };
 
+bool CheckCollision (SDL_Rect& a, SDL_Rect& b);
 #endif //APP_H

@@ -9,5 +9,5 @@ Sprite::~Sprite() {
 }
 
 void Sprite::LoadSprite(std::string path) {
-	texture->LoadFromFile(path, App::GetInst()->GetWindow());
+	texture = App::GetInst ()->GetTextureManager ()->GetTexture (path);
 }
