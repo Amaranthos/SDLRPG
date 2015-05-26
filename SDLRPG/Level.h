@@ -7,10 +7,9 @@ class Tile;
 
 class Level {
 public:
-	Level (int w, int h);
+	Level (int w, int h, int tileSize, const std::string& name);
 	~Level ();
 
-	void LoadLevel ();
 	void FreeLevel ();
 
 	void AddTile (int x, int y, Tile* tile);
@@ -18,8 +17,8 @@ public:
 
 	void Draw ();
 
-	int Width () const { return width; }
-	int Height () const { return height; }
+	int Width () const { return width * tileSize; }
+	int Height () const { return height * tileSize; }
 
 private:
 	void Resize (int w, int h);
@@ -28,5 +27,8 @@ private:
 
 	int width;
 	int height;
+	int tileSize;
+
+	std::string name;
 };
 #endif //LEVEL_H

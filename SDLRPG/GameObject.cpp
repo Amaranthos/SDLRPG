@@ -11,6 +11,7 @@ GameObject::GameObject () {
 }
 
 GameObject::~GameObject () {
+	printf ("GameObject Freed");
 	Free ();
 }
 

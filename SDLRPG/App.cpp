@@ -6,9 +6,8 @@
 #include "Texture.h"
 
 App* App::inst = nullptr;
-Texture* texture = new Texture ();
 
-App::App () : windowWidth (960), windowHeight (720), appState(Uninitalized), window(Window()), timeSinceStart(Timer()), deltaTimer(Timer()), goManager(GameObjectManager()), textureManager(TextureManager()), mainCam(Camera(960, 720)), dt(0) {
+App::App () : windowWidth (960), windowHeight (720),  appState(Uninitalized), window(Window()), timeSinceStart(Timer()), deltaTimer(Timer()), goManager(GameObjectManager()), textureManager(TextureManager()), mainCam(Camera(960, 720)), dt(0), levelManager(LevelManager()) {
 
 }
 
@@ -31,13 +30,9 @@ void App::Init () {
 	appState = GameState::Playing;
 
 	PlayerController* player = new PlayerController();
-
-	currentLevel = new Level (10, 10);
-	currentLevel->LoadLevel ();
-
 	goManager.Add ("Player", player);
 
-	texture->LoadFromFile ("img/bg.png", GetWindow());
+	currentLevel = levelManager.GetLevel ("maps/testlevel.map");
 
 	while (!IsExiting ())
 		Update ();
@@ -105,7 +100,6 @@ void App::Update () {
 
 	window.Clear ();
 
-	texture->Render (0, 0, &window, mainCam.View());
 	currentLevel->Draw ();
 	goManager.UpdateAll ();
 
@@ -114,8 +108,6 @@ void App::Update () {
 
 void App::Close () {
 	window.Free ();
-
-	texture->Free ();
 
 	Mix_Quit ();
 	IMG_Quit ();

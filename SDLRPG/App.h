@@ -10,6 +10,7 @@
 
 #include "GameObjectManager.h"
 #include "TextureManager.h"
+#include "LevelManager.h"
 
 #include "Timer.h"
 #include "Window.h"
@@ -24,19 +25,19 @@ public:
 	Window* GetWindow() { return &window; }
 	GameObjectManager* GetGOManager() { return &goManager; }
 	TextureManager* GetTextureManager () { return &textureManager; }
+	LevelManager* GetLevelManager () { return &levelManager; }
+	Level* GetCurrentLevel () { return currentLevel; }
 	Camera* MainCamera () { return &mainCam; }
 	
 	void Init();
 	
-	const static int levelWidth = 1280;
-	const static int levelHeight = 960;
-
 	const Uint8* KeyStates () const { return keyStates; }
 	Uint32 TimeSinceStart () { return timeSinceStart.GetTicks (); }
 	float DeltaTime () const { return dt; }
 	
 	int WindowWidth () const { return windowWidth; }
 	int WindowHeight () const { return windowHeight; }
+
 private:
 	App ();
 	~App ();
@@ -53,6 +54,7 @@ private:
 
 	GameObjectManager goManager;
 	TextureManager textureManager;
+	LevelManager levelManager;
 
 	Level* currentLevel;
 

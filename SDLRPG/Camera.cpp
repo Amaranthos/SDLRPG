@@ -24,6 +24,6 @@ void Camera::PositionCam (int x, int y) {
 void Camera::CheckBounds () {
 	if (view.x < 0) view.x = 0;
 	if (view.y < 0) view.y = 0;
-	if (view.x > App::levelWidth - view.w) view.x = App::levelWidth - view.w;
-	if (view.y > App::levelHeight - view.h) view.y = App::levelHeight - view.h;
+	if (view.x > App::GetInst ()->GetCurrentLevel ()->Width () - view.w) view.x = App::GetInst ()->GetCurrentLevel ()->Width () - view.w;
+	if (view.y > App::GetInst ()->GetCurrentLevel ()->Height () - view.h) view.y = App::GetInst ()->GetCurrentLevel ()->Height () - view.h;
 }

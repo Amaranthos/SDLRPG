@@ -29,3 +29,4 @@ Texture* TextureManager::GetTexture (std::string name) {
 	}
 	else return itr->second;
 }
+

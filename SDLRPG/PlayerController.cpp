@@ -37,13 +37,13 @@ void PlayerController::Update() {
 
 	if (transform->position.x < 0) transform->position.x = 0;
 
-	if (transform->position.x > (App::GetInst ()->levelWidth - Width)) transform->position.x = (App::GetInst ()->levelWidth - Width);
+	if (transform->position.x > (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Width () - Width)) transform->position.x = (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Width () - Width);
 
 	transform->position.y += dVel.y * Velocity * App::GetInst ()->DeltaTime ();
 
 	if (transform->position.y < 0) transform->position.y = 0;
 
-	if (transform->position.y > (App::GetInst ()->levelHeight - Height)) transform->position.y = (App::GetInst ()->levelHeight - Height);
+	if (transform->position.y > (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Height () - Height)) transform->position.y = (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Height () - Height);
 
 	App::GetInst ()->MainCamera ()->PositionCam ((transform->position.x + Width / 2) - App::GetInst ()->WindowWidth () / 2, (transform->position.y + Height / 2) - App::GetInst ()->WindowHeight () / 2);
 

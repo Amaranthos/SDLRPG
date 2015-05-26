@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 
-class GameObject;
+#include "GameObject.h"
 
 class GameObjectManager {
 public:
@@ -23,8 +23,8 @@ private:
 	std::map<std::string, GameObject*> gameObjects;
 	int count;
 
-	struct GameObjectDeallocator {
-		void operator() (const std::pair<std::string, GameObject*>& p) const {
+	struct GameObjectDeallocator{
+		void operator () (const std::pair<std::string, GameObject*> &p) const {
 			delete p.second;
 		}
 	};
