@@ -9,7 +9,14 @@
 PlayerController::PlayerController () {
 	AddComponent (new Sprite ());
 	GetComponent<Sprite> (ComponentID::Sprite)->LoadSprite("img/player.png");
+
+	transform->position = Vec2{ 32,	32 };
 	
+	width = GetComponent<Sprite> (ComponentID::Sprite)->GetTexture ()->Width ();
+	height = GetComponent<Sprite> (ComponentID::Sprite)->GetTexture ()->Height ();
+
+	velocity = 300;
+
 	dVel.x = 0;
 	dVel.y = 0;
 }
@@ -33,19 +40,19 @@ void PlayerController::Update() {
 
 	dVel.Normalize ();
 
-	transform->position.x += dVel.x * Velocity * App::GetInst ()->DeltaTime ();
+	transform->position.x += dVel.x * velocity * App::GetInst ()->DeltaTime ();
 
 	if (transform->position.x < 0) transform->position.x = 0;
 
-	if (transform->position.x > (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Width () - Width)) transform->position.x = (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Width () - Width);
+	if (transform->position.x > (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Width () - width)) transform->position.x = (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Width () - width);
 
-	transform->position.y += dVel.y * Velocity * App::GetInst ()->DeltaTime ();
+	transform->position.y += dVel.y * velocity * App::GetInst ()->DeltaTime ();
 
 	if (transform->position.y < 0) transform->position.y = 0;
 
-	if (transform->position.y > (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Height () - Height)) transform->position.y = (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Height () - Height);
+	if (transform->position.y > (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Height () - height)) transform->position.y = (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Height () - height);
 
-	App::GetInst ()->MainCamera ()->PositionCam ((transform->position.x + Width / 2) - App::GetInst ()->WindowWidth () / 2, (transform->position.y + Height / 2) - App::GetInst ()->WindowHeight () / 2);
+	App::GetInst ()->MainCamera ()->PositionCam ((transform->position.x + width / 2) - App::GetInst ()->WindowWidth () / 2, (transform->position.y + height / 2) - App::GetInst ()->WindowHeight () / 2);
 
 	GetComponent<Sprite> (ComponentID::Sprite)->GetTexture ()->Render (transform->position.x - App::GetInst ()->MainCamera ()->View ()->x, transform->position.y - App::GetInst ()->MainCamera ()->View ()->y, App::GetInst ()->GetWindow ());
 }
