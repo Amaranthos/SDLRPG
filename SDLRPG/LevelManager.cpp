@@ -138,7 +138,7 @@ Level* LevelManager::LoadLevel (const std::string& path) {
 	}
 
 	if (level) {
-		printf ("Success: Loaded level: %s\n!", path.c_str ());
+		printf ("Success: Loaded level: %s!\n", path.c_str ());
 		return level;
 	}
 	return nullptr;

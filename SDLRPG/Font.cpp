@@ -1,5 +1,7 @@
 #include "Font.h"
 
+#include <SDL_ttf.h>
+
 Font::Font (): font(nullptr) {
 	
 }

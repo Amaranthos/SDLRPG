@@ -6,9 +6,9 @@
 #include <vector>
 
 #include "TileType.h"
-#include "Level.h"
 
 class Tile;
+class Level;
 
 class LevelManager {
 public:

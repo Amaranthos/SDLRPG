@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 
-#include "GameObject.h"
+class GameObject;
 
 class GameObjectManager {
 public:

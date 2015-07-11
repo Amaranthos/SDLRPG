@@ -1,19 +1,20 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 
-#include "Component.h"
-#include "Texture.h"
-#include "App.h"
+#include <string>
 
-class Sprite : public Component
-{
+#include "Component.h"
+
+class Texture;
+
+class Sprite : public Component {
 public:
 	Sprite();
 	~Sprite();
 
-	void LoadSprite(std::string path);
+	void LoadSprite(const std::string& path);
 
-	Texture* GetTexture() { return texture; }
+	Texture* GetTexture() const { return texture; }
 
 private:
 	Texture* texture;

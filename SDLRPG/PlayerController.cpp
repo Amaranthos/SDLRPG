@@ -4,6 +4,7 @@
 
 #include "App.h"
 #include "Sprite.h"
+#include "Texture.h"
 #include "Transform.h"
 
 PlayerController::PlayerController () {
