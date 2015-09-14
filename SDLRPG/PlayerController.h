@@ -9,18 +9,12 @@ public:
 	PlayerController ();
 	~PlayerController ();
 
-
-
 	void Update() override;
 
-	int Width () const{ return width; }
-	int Height () const { return height; }
 	int Velocity () const { return velocity; }
 private:
 	Vec2 dVel;
 
-	int width;
-	int height;
 	int velocity;
 };
 #endif //PLAYERCONTROLLER_H

@@ -19,6 +19,6 @@ void Tile::SetPos (Vec2& pos) {
 }
 
 void Tile::Draw () {
-	if (CheckCollision (SDL_Rect{ pos.x, pos.y, tileSize, tileSize }, *App::GetInst ()->MainCamera ()->View ()))
+	if (CheckCollision (SDL_Rect{ (int)pos.x, (int)pos.y, tileSize, tileSize }, *App::GetInst ()->MainCamera ()->View ()))
 		texture->Render (pos.x - App::GetInst ()->MainCamera ()->View ()->x, pos.y - App::GetInst ()->MainCamera ()->View ()->y, App::GetInst ()->GetWindow (), &clip);
 }

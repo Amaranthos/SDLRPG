@@ -22,11 +22,17 @@ public:
 	void RemoveComponent (ComponentID id);
 	bool HasComponent (ComponentID id);
 
+	int Width () const { return width; }
+	int Height () const { return height; }
+
 	template <typename T>
 	T* GetComponent (ComponentID id);
 protected:
 	std::vector<Component*> components;
 	Transform* transform;
+
+	int width;
+	int height;
 };
 
 template <typename T>

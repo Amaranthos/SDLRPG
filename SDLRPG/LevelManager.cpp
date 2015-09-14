@@ -126,7 +126,7 @@ Level* LevelManager::LoadLevel (const std::string& path) {
 
 			Tile* tile = new Tile (GetTile ((TileType)std::atoi (&(*itr))));
 				
-			tile->SetPos (Vec2{x * tile->GetTileSize(), y * tile->GetTileSize()});
+			tile->SetPos(Vec2{(float) x * tile->GetTileSize(), (float) y * tile->GetTileSize() });
 			level->AddTile (x, y, tile);
 
 			++x;
