@@ -121,6 +121,10 @@ Level* LevelManager::LoadLevel (const std::string& path) {
 	int x = 0;
 	int y = 0;
 
+	if (!level) {
+		return nullptr;
+	}
+
 	for (std::string::iterator itr = tiles.begin (); itr != tiles.end (); ++itr) {
 		if (*itr != ' ' && *itr != '\n' && *itr != '\r' && *itr != '\t') {
 
@@ -136,10 +140,6 @@ Level* LevelManager::LoadLevel (const std::string& path) {
 			}
 		}
 	}
-
-	if (level) {
-		printf ("Success: Loaded level: %s!\n", path.c_str ());
-		return level;
-	}
-	return nullptr;
+	printf ("Success: Loaded level: %s!\n", path.c_str ());
+	return level;
 }

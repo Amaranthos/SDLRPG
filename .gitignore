@@ -32,5 +32,6 @@
 
 Thumbs.db
 
+.vs/
 Debug/
 Release/
