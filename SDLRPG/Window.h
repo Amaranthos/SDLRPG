@@ -34,10 +34,9 @@ public:
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
-	int windowID;
+	unsigned int windowID;
 
-	int width;
-	int height;
+	unsigned int width, height;
 
 	bool mouseFocus;
 	bool keyboardFocus;

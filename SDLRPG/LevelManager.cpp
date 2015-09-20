@@ -34,7 +34,7 @@ Tile LevelManager::GetTile (TileType index) {
 int LevelManager::LoadTileSet (const std::string& path) {
 	//Clear old 
 	std::for_each (tileMasterList.begin (), tileMasterList.end (), TileDeallocator ());
-	int tileSize;
+	int tileSize = 0;
 
 	//Load file
 	std::ifstream input (path);
@@ -71,7 +71,7 @@ int LevelManager::LoadTileSet (const std::string& path) {
 			int index = atoi (tile->first_attribute ("index")->value ());
 			int x = atoi (tile->first_attribute ("x")->value ());
 			int y = atoi (tile->first_attribute ("y")->value ());
-			int cost = atoi (tile->first_attribute ("cost")->value ());
+			//int cost = atoi (tile->first_attribute ("cost")->value ());
 
 			Tile* temp = new Tile (SDL_Rect{ x * tileSize, y * tileSize, tileSize, tileSize }, tileSize, (TileType)index, path);
 			tileMasterList.push_back (temp);
@@ -90,7 +90,10 @@ Level* LevelManager::LoadLevel (const std::string& path) {
 	std::ifstream input (path);
 
 	//Ensure it opened
-	if (!input) printf ("Warning! Could not open file: %s\n", path.c_str ());
+	if (!input) {
+		printf ("Warning! Could not open file: %s\n", path.c_str ());
+		return nullptr;
+	}
 
 	//Get the contents
 	std::string fileContents;
@@ -122,6 +125,7 @@ Level* LevelManager::LoadLevel (const std::string& path) {
 	int y = 0;
 
 	if (!level) {
+		printf ("Warning! Could not create level\n");
 		return nullptr;
 	}
 
@@ -140,6 +144,17 @@ Level* LevelManager::LoadLevel (const std::string& path) {
 			}
 		}
 	}
+
+	App::GetInst ()->GetGOManager ()->LoadLevel (level->TileSize (), level->NumTilesX (), level->NumTilesY ());
+
 	printf ("Success: Loaded level: %s!\n", path.c_str ());
 	return level;
+}
+
+void LevelManager::LevelDeallocator::operator() (const std::pair<std::string, Level*> &p) const {
+	delete p.second;
+}
+
+void LevelManager::TileDeallocator::operator () (const Tile* p) const {
+	delete p;
 }

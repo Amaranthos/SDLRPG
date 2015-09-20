@@ -2,6 +2,7 @@
 #define LEVEL_H
 
 #include <vector>
+#include <string>
 
 class Tile;
 
@@ -20,14 +21,16 @@ public:
 	int Width () const { return width * tileSize; }
 	int Height () const { return height * tileSize; }
 
+	int TileSize () const { return  tileSize; }
+	int NumTilesX () const { return width; }
+	int NumTilesY () const { return height; }
+
 private:
 	void Resize (int w, int h);
 
-	std::vector<std::vector<Tile*>> map;
+	std::vector<Tile*> map;
 
-	int width;
-	int height;
-	int tileSize;
+	unsigned int width, height, tileSize;
 
 	std::string name;
 };

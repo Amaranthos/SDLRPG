@@ -11,5 +11,7 @@ public:
 
 	Vec2 position;
 	float rotation;
+
+	void operator=(const Transform& item);
 };
 #endif //TRANSFORM_H

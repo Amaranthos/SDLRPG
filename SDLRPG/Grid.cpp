@@ -7,11 +7,8 @@
 #include "Texture.h"
 #include "ComponentID.h"
 
-Grid::Grid (int cellSize): cellSize(cellSize) {
-	grid.resize (App::GetInst ()->GetCurrentLevel ()->Width ());
-
-	for (int x = 0; x < grid.size (); ++x)
-		grid[x].resize (App::GetInst ()->GetCurrentLevel ()->Height ());
+Grid::Grid (int cellSize, int width, int height) : cellSize(cellSize), width(width), height(height) {
+	grid.resize (width*height);
 }
 
 
@@ -21,22 +18,28 @@ Grid::~Grid () {
 
 void Grid::Insert (GameObject* go) {
 	Vec2 pos = (go->GetComponent<Transform>(ComponentID::Transform)->position);
-	pos.x /= cellSize;
-	pos.y /= cellSize;
 
-	grid[pos.x][pos.y].push_back (go);
+	int x = static_cast<int>(pos.x) / cellSize;
+	int y = static_cast<int>(pos.y) / cellSize;
+
+	indexes.insert ({ go, x + y * width });
+
+	grid[x + y * width].push_back (go);
 }
 
 void Grid::Remove (GameObject* go) {
-	Vec2 pos = (go->GetComponent<Transform> (ComponentID::Transform)->position);
-	pos.x /= cellSize;
-	pos.y /= cellSize;
+	int index = -1;
+	index = indexes.find (go)->second;
 
-	auto loc = std::find (grid[pos.x][pos.y].begin (), grid[pos.x][pos.y].end (), go);
+	if (index != -1) {
+		auto loc = std::find (grid[index].begin (), grid[index].end (), go);
 
-	if (loc != grid[pos.x][pos.y].end ()) {
-		*loc = grid[pos.x][pos.y].back ();
-		grid[pos.x][pos.y].pop_back ();
+		if (loc != grid[index].end ()) {
+			*loc = grid[index].back ();
+			grid[index].pop_back ();
+		}
+
+		indexes.erase (indexes.find(go));
 	}
 }
 
@@ -47,27 +50,35 @@ void Grid::Update (GameObject* go) {
 
 std::vector<GameObject*> Grid::GetNeightbours (GameObject* go) {
 	std::vector<GameObject*> res;
-	int range = 1;
 
-	if (go->Height () >= go->Width ())
-		range = go->Height() / cellSize;
-	else
-		range = go->Width() / cellSize;
+	int index = -1;
+	index = indexes.find (go)->second;
 
-	int x = 0;
-	int y = 0;
+	if (index != -1) {
+		int range = 1;
 
-	for (int i = -range; i <= range; ++i)
-		if (i + x > 0 && i + x < grid.size())
-			for (int j = -range; j <= range; j++)
-				if (j + y > 0 && j + y < grid[i].size())
-					res.insert (res.end (), grid[i + x][j + y].begin (), grid[i + x][j + y].end ());
+		if (go->Height () >= go->Width ())
+			range = go->Height() / cellSize;
+		else
+			range = go->Width() / cellSize;
+
+		for (int i = -range; i <= range; ++i)
+				for (int j = -range; j <= range; j++)
+					if (index + i + j * width > 0 && index + i + j * width < width*height)
+						res.insert (res.end (), grid[index + i + j * width].begin (), grid[index + i + j * width].end ());
 	
+	}
 	return res;
 }
 
+int Grid::Index (GameObject* go) {
+	return indexes.find (go)->second;
+}
+
 void Grid::Clear () {
-	for (int i = 0; i < grid.size (); ++i)
-		for (int j = 0; j < grid[i].size (); ++j)
-			grid[i][j].clear ();
+	for (size_t i = 0; i < grid.size (); ++i)
+		for (size_t j = 0; j < grid[i].size (); ++j)
+			grid[i + j * width].clear ();
+
+	indexes.clear ();
 }

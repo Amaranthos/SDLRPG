@@ -60,13 +60,12 @@ private:
 
 	const Uint8* keyStates;
 
-	int windowWidth;
-	int windowHeight;
+	unsigned int windowWidth, windowHeight;
 
 	Timer timeSinceStart;
 	Timer deltaTimer;
 	float dt;
 };
 
-bool CheckCollision (SDL_Rect& a, SDL_Rect& b);
+bool CheckCollision (const SDL_Rect& a, const SDL_Rect& b);
 #endif //APP_H

@@ -14,3 +14,7 @@ Sprite::~Sprite() {
 void Sprite::LoadSprite(const std::string& path) {
 	texture = App::GetInst ()->GetTextureManager ()->GetTexture (path);
 }
+
+void Sprite::operator=(const Sprite& item) {
+	texture = item.texture;
+}

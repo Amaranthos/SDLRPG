@@ -9,3 +9,8 @@ Transform::Transform ():Component(ComponentID::Transform) {
 
 Transform::~Transform () {
 }
+
+void Transform::operator=(const Transform& item) {
+	position = item.position;
+	rotation = item.rotation;
+}

@@ -31,8 +31,7 @@ protected:
 	std::vector<Component*> components;
 	Transform* transform;
 
-	int width;
-	int height;
+	unsigned int width, height;
 };
 
 template <typename T>

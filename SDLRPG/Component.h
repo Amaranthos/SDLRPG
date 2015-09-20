@@ -10,6 +10,8 @@ public:
 
 	ComponentID ID() { return id; }
 
+	void operator=(const Component& item);
+
 protected:
 	const ComponentID id;
 

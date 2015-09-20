@@ -45,15 +45,15 @@ void PlayerController::Update() {
 
 	if (transform->position.x < 0) transform->position.x = 0;
 
-	if (transform->position.x > (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Width () - width)) transform->position.x = (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Width () - width);
+	if (transform->position.x > (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Width () - width)) transform->position.x = static_cast<float>(App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Width () - width);
 
 	transform->position.y += dVel.y * velocity * App::GetInst ()->DeltaTime ();
 
 	if (transform->position.y < 0) transform->position.y = 0;
 
-	if (transform->position.y > (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Height () - height)) transform->position.y = (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Height () - height);
+	if (transform->position.y > (App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Height () - height)) transform->position.y = static_cast<float>(App::GetInst ()->App::GetInst ()->GetCurrentLevel ()->Height () - height);
 
-	App::GetInst ()->MainCamera ()->PositionCam ((transform->position.x + width / 2) - App::GetInst ()->WindowWidth () / 2, (transform->position.y + height / 2) - App::GetInst ()->WindowHeight () / 2);
+	App::GetInst ()->MainCamera ()->PositionCam ((static_cast<int>(transform->position.x) + width / 2) - App::GetInst ()->WindowWidth () / 2, (static_cast<int>(transform->position.y) + height / 2) - App::GetInst ()->WindowHeight () / 2);
 
-	GetComponent<Sprite> (ComponentID::Sprite)->GetTexture ()->Render (transform->position.x - App::GetInst ()->MainCamera ()->View ()->x, transform->position.y - App::GetInst ()->MainCamera ()->View ()->y, App::GetInst ()->GetWindow ());
+	GetComponent<Sprite> (ComponentID::Sprite)->GetTexture ()->Render (static_cast<int>(transform->position.x) - App::GetInst ()->MainCamera ()->View ()->x, static_cast<int>(transform->position.y) - App::GetInst ()->MainCamera ()->View ()->y, App::GetInst ()->GetWindow ());
 }

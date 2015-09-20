@@ -31,12 +31,22 @@ void GameObject::AddComponent(Component* comp) {
 }
 
 void GameObject::RemoveComponent (Component* comp) {
-	
+	auto loc = std::find (components.begin (), components.end (), comp);
+
+	if (loc != components.end ()) {
+		*loc = components.back ();
+		components.pop_back ();
+	}
 }
 
-void GameObject::RemoveComponent (ComponentID id) {
-
-}
+//void GameObject::RemoveComponent (ComponentID id) {
+//	auto loc = std::find (components.begin (), components.end (), id);
+//
+//	if (loc != components.end ()) {
+//		*loc = components.back ();
+//		components.pop_back ();
+//	}
+//}
 
 void GameObject::Free () {
 	for (size_t i = 0; i < components.size (); ++i)

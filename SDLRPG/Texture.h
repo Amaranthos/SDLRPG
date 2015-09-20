@@ -51,8 +51,7 @@ private:
 	void* pixels;
 	int pitch;
 
-	int width;
-	int height;
+	unsigned int width, height;
 };
 
 #endif //TEXTURE_H

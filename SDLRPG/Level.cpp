@@ -16,22 +16,18 @@ Level::~Level () {
 }
 
 void Level::Resize (int w, int h) {
-	map.resize (w);
-
-	for (size_t i = 0; i < w; ++i) {
-		map.at (i).resize (h, 0);
-	}
+	map.resize (w * h);
 
 	width = w;
 	height = h;
 }
 
 void Level::AddTile (int x, int y, Tile* tile) {
-	map[x][y] = tile;
+	map[x + y * width] = tile;
 }
 
 Tile* Level::GetTile (int x, int y) {
-	return map[x][y];
+	return map[x + y * width];
 }
 
 void Level::Draw () {
@@ -39,7 +35,7 @@ void Level::Draw () {
 
 	for (size_t i = 0; i < width; ++i) {
 		for (size_t j = 0; j < height; ++j) {
-			tile = map[i][j];
+			tile = map[i + j * width];
 			tile->Draw ();
 		}
 	}
@@ -47,8 +43,6 @@ void Level::Draw () {
 
 void Level::FreeLevel () {
 	for (size_t i = 0; i < map.size (); ++i) {
-		for (size_t j = 0; j < map[i].size (); ++j) {
-			delete map[i][j];
-		}
+		delete map[i];
 	}
 }

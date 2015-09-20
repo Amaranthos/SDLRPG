@@ -16,7 +16,9 @@ public:
 
 	Texture* GetTexture() const { return texture; }
 
+	void operator=(const Sprite& item);
+
 private:
 	Texture* texture;
 };
-#endif SPRITE_H
+#endif //SPRITE_H

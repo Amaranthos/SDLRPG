@@ -1,6 +1,6 @@
 #include "Window.h"
 
-Window::Window() : window(nullptr), mouseFocus(false), keyboardFocus(false), fullscreen(false), minimized(false), width(0), height(0) {
+Window::Window () : window (nullptr), renderer (nullptr), width (0), height (0), mouseFocus (false), keyboardFocus (false), fullscreen (false), minimized (false), shown(false){
 	
 }
 
