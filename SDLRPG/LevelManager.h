@@ -27,15 +27,11 @@ private:
 	Level* LoadLevel (const std::string& path);
 
 	struct LevelDeallocator {
-		void operator() (const std::pair<std::string, Level*> &p) const {
-			delete p.second;
-		}
+		void operator() (const std::pair<std::string, Level*> &p) const;
 	};
 
 	struct TileDeallocator {
-		void operator() (const Tile* p) const {
-			delete p;
-		}
+		void operator() (const Tile* p) const;
 	};
 };
 #endif //LEVELMANAGER_H

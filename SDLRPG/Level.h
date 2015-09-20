@@ -2,6 +2,7 @@
 #define LEVEL_H
 
 #include <vector>
+#include <string>
 
 class Tile;
 
@@ -23,7 +24,7 @@ public:
 private:
 	void Resize (int w, int h);
 
-	std::vector<std::vector<Tile*>> map;
+	std::vector<Tile*> map;
 
 	int width;
 	int height;

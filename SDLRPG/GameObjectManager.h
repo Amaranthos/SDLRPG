@@ -24,9 +24,7 @@ private:
 	int count;
 
 	struct GameObjectDeallocator{
-		void operator () (const std::pair<std::string, GameObject*> &p) const {
-			delete p.second;
-		}
+		void operator () (const std::pair<std::string, GameObject*> &p) const;
 	};
 };
 #endif //GAMEOBJECTMANAGER_H

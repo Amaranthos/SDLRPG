@@ -19,4 +19,4 @@ public:
 private:
 	Texture* texture;
 };
-#endif SPRITE_H
+#endif

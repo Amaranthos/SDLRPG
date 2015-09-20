@@ -5,7 +5,7 @@
 #include "Font.h"
 #include "Vec2.h"
 
-Texture::Texture () : width(0), height(0), texture(nullptr) {
+Texture::Texture () : texture(nullptr), width(0), height(0) {
 	
 }
 
@@ -24,7 +24,7 @@ bool Texture::LoadFromFile (const std::string& path, Window* window, Colour tran
 	if (loadedSurface) {
 		printf ("Success: Loaded image %s!\n", path.c_str ());
 
-		SDL_Surface* formattedSurface = SDL_ConvertSurfaceFormat (loadedSurface, SDL_PIXELFORMAT_RGBA8888, NULL);
+		SDL_Surface* formattedSurface = SDL_ConvertSurfaceFormat (loadedSurface, SDL_PIXELFORMAT_RGBA8888, 0);
 
 		if (formattedSurface) {
 			newTexture = SDL_CreateTexture (window->Renderer (), SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STREAMING, formattedSurface->w, formattedSurface->h);
@@ -55,11 +55,11 @@ bool Texture::LoadFromFile (const std::string& path, Window* window, Colour tran
 
 			SDL_FreeSurface (formattedSurface);
 		}
-		else printf ("Warning: Unable to covert %S to display format! SDL_Image Error: %s\n", path.c_str (), SDL_GetError());
+		else printf ("Warning: Unable to covert %s to display format! SDL_Image Error: %s\n", path.c_str (), SDL_GetError());
 
 		SDL_FreeSurface (loadedSurface);
 	}
-	else printf ("Warning: Unable to load image %S! SDL_Image Error: %s\n", path.c_str (), IMG_GetError ());
+	else printf ("Warning: Unable to load image %s! SDL_Image Error: %s\n", path.c_str (), IMG_GetError ());
 	texture = newTexture;
 	return !!texture;
 }

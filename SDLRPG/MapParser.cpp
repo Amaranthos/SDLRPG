@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-#include "rapidxml\rapidxml.hpp"
+#include "rapidxml/rapidxml.hpp"
 
 #include "App.h"
 #include "Tile.h"
@@ -17,7 +17,10 @@ MapParser::~MapParser () {
 
 }
 
-Level MapParser::LoadLevelFromFile (std::string& const path) {
+Level MapParser::LoadLevelFromFile (const std::string& path) {
+	throw "";
+
+	/**
 	//Load file
 	std::ifstream input (path);
 
@@ -64,4 +67,5 @@ Level MapParser::LoadLevelFromFile (std::string& const path) {
 
 		}
 	}
+	*/
 }

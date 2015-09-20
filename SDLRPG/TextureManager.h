@@ -17,9 +17,7 @@ private:
 	std::map<std::string, Texture*> textures;
 
 	struct TextureDeallocator {
-		void operator() (const std::pair<std::string, Texture*>&p) const {
-			delete p.second;
-		}
+		void operator() (const std::pair<std::string, Texture*>&p) const;
 	};
 };
 #endif //TEXTUREMANAGER_H

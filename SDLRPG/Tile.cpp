@@ -2,7 +2,7 @@
 
 #include "App.h"
 
-Tile::Tile (SDL_Rect clip, int tileSize, TileType type, std::string& const image) {
+Tile::Tile (SDL_Rect clip, int tileSize, TileType type, const std::string& image) {
 	this->clip = clip;
 	this->type = type;
 	this->tileSize = tileSize;
@@ -14,7 +14,7 @@ Tile::~Tile () {
 	texture->Free ();
 }
 
-void Tile::SetPos (Vec2& pos) {
+void Tile::SetPos (const Vec2& pos) {
 	this->pos = pos;
 }
 

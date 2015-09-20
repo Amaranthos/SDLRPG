@@ -30,3 +30,7 @@ Texture* TextureManager::GetTexture (std::string name) {
 	else return itr->second;
 }
 
+
+void TextureManager::TextureDeallocator::operator() (const std::pair<std::string, Texture*>&p) const {
+	delete p.second;
+}
