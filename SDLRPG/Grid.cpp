@@ -7,11 +7,14 @@
 #include "Texture.h"
 #include "ComponentID.h"
 
-Grid::Grid (int cellSize): cellSize(cellSize) {
-	grid.resize (App::GetInst ()->GetCurrentLevel ()->Width ());
+#include <algorithm>
 
-	for (int x = 0; x < grid.size (); ++x)
-		grid[x].resize (App::GetInst ()->GetCurrentLevel ()->Height ());
+Grid::Grid (int cellSize): cellSize(cellSize) {
+	width = App::GetInst ()->GetCurrentLevel ()->Width ();
+	grid.resize (width * App::GetInst ()->GetCurrentLevel ()->Height ());
+
+	// for (size_t x = 0; x < grid.size (); ++x)
+	// 	grid[x].resize (App::GetInst ()->GetCurrentLevel ()->Height ());
 }
 
 
@@ -24,7 +27,7 @@ void Grid::Insert (GameObject* go) {
 	pos.x /= cellSize;
 	pos.y /= cellSize;
 
-	grid[pos.x][pos.y].push_back (go);
+	grid[pos.x+pos.y*width].push_back (go);
 }
 
 void Grid::Remove (GameObject* go) {
@@ -32,11 +35,11 @@ void Grid::Remove (GameObject* go) {
 	pos.x /= cellSize;
 	pos.y /= cellSize;
 
-	auto loc = std::find (grid[pos.x][pos.y].begin (), grid[pos.x][pos.y].end (), go);
+	auto loc = std::find (grid[pos.x+pos.y*width].begin (), grid[pos.x+pos.y*width].end (), go);
 
-	if (loc != grid[pos.x][pos.y].end ()) {
-		*loc = grid[pos.x][pos.y].back ();
-		grid[pos.x][pos.y].pop_back ();
+	if (loc != grid[pos.x+pos.y*width].end ()) {
+		*loc = grid[pos.x+pos.y*width].back ();
+		grid[pos.x+pos.y*width].pop_back ();
 	}
 }
 
@@ -58,16 +61,16 @@ std::vector<GameObject*> Grid::GetNeightbours (GameObject* go) {
 	int y = 0;
 
 	for (int i = -range; i <= range; ++i)
-		if (i + x > 0 && i + x < grid.size())
+		if (i + x > 0 && i + x < width)
 			for (int j = -range; j <= range; j++)
-				if (j + y > 0 && j + y < grid[i].size())
-					res.insert (res.end (), grid[i + x][j + y].begin (), grid[i + x][j + y].end ());
+				if (j + y > 0 && j + y < (int)grid.size()/width)
+					res.insert(res.end(), grid[i + x+(j+y)*width].begin(), grid[i + x+(j+y)*width].end());
 	
 	return res;
 }
 
 void Grid::Clear () {
-	for (int i = 0; i < grid.size (); ++i)
-		for (int j = 0; j < grid[i].size (); ++j)
-			grid[i][j].clear ();
+	for (size_t i = 0; i < grid.size(); ++i)
+		// for (size_t j = 0; j < grid[i].size (); ++j)
+			grid[i].clear ();
 }

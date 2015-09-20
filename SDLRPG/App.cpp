@@ -7,7 +7,9 @@
 
 App* App::inst = nullptr;
 
-App::App () : windowWidth (960), windowHeight (720),  appState(Uninitalized), window(Window()), timeSinceStart(Timer()), deltaTimer(Timer()), goManager(GameObjectManager()), textureManager(TextureManager()), mainCam(Camera(960, 720)), dt(0), levelManager(LevelManager()) {
+App::App () : window(Window()), appState(Uninitalized), mainCam(Camera(960, 720)), 
+	goManager(GameObjectManager()), textureManager(TextureManager()), levelManager(LevelManager()),
+	windowWidth (960), windowHeight (720), timeSinceStart(Timer()), deltaTimer(Timer()), dt(0) {
 
 }
 
@@ -66,7 +68,7 @@ bool App::InitSDL () {
 			}
 			else printf ("Success: SDL_TTF initialized!\n");
 
-			if (Mix_OpenAudio (44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+			if (Mix_OpenAudio (44100, MIX_DEFAULT_FORMAT, 2, 1024) < 0) {
 				printf("Warning: SDL_Mixer could not init! SDL_Mixer Error: %s\n", Mix_GetError());
 				success = false;
 			}
@@ -90,7 +92,8 @@ void App::Update () {
 				appState = Exiting;
 
 			window.HandleEvent (event);
-			break;		
+			break;
+		default: break;
 		}
 	}
 
@@ -119,7 +122,7 @@ bool App::IsExiting () {
 	return appState == Exiting;
 }
 
-bool CheckCollision (SDL_Rect& a, SDL_Rect& b) {
+bool CheckCollision (const SDL_Rect& a, const SDL_Rect& b) {
 	//The sides of the rectangles
 	int leftA, leftB;
 	int rightA, rightB;

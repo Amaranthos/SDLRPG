@@ -7,12 +7,12 @@
 
 class Tile {
 public:
-	Tile (SDL_Rect clip, int tileSize, TileType type, std::string& const image);
+	Tile (SDL_Rect clip, int tileSize, TileType type, const std::string& image);
 	~Tile ();
 
 	void Draw ();
 
-	void SetPos (Vec2& pos);
+	void SetPos (const Vec2& pos);
 
 	int GetTileSize () const { return tileSize; }
 	Vec2* GetTile () { return &pos; }

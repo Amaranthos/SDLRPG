@@ -16,7 +16,7 @@ public:
 
 class Grid {
 public:
-	typedef std::vector<std::vector<std::vector<GameObject*>>> Container;
+	typedef std::vector<std::vector<GameObject*>> Container;
 
 	Grid (int cellSize);
 	~Grid ();
@@ -34,5 +34,6 @@ private:
 
 	Container grid;
 	int cellSize;
+	int width;
 };
 #endif //GRID_H

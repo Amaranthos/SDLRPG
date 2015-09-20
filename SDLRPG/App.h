@@ -68,5 +68,5 @@ private:
 	float dt;
 };
 
-bool CheckCollision (SDL_Rect& a, SDL_Rect& b);
+bool CheckCollision (const SDL_Rect& a, const SDL_Rect& b);
 #endif //APP_H

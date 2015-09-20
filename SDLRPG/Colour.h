@@ -15,4 +15,4 @@ public:
 	Uint8 alpha;
 };
 
-#endif COLOUR_H
+#endif

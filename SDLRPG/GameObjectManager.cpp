@@ -39,3 +39,8 @@ void GameObjectManager::UpdateAll () {
 		itr++;
 	}
 }
+
+
+void GameObjectManager::GameObjectDeallocator::operator () (const std::pair<std::string, GameObject*> &p) const {
+	delete p.second;
+}

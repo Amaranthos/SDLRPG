@@ -4,7 +4,7 @@
 #include <fstream>
 #include <string>
 
-#include "rapidxml\rapidxml.hpp"
+#include "rapidxml/rapidxml.hpp"
 
 #include "App.h"
 #include "Level.h"
@@ -71,7 +71,7 @@ int LevelManager::LoadTileSet (const std::string& path) {
 			int index = atoi (tile->first_attribute ("index")->value ());
 			int x = atoi (tile->first_attribute ("x")->value ());
 			int y = atoi (tile->first_attribute ("y")->value ());
-			int cost = atoi (tile->first_attribute ("cost")->value ());
+			// int cost = atoi (tile->first_attribute ("cost")->value ());
 
 			Tile* temp = new Tile (SDL_Rect{ x * tileSize, y * tileSize, tileSize, tileSize }, tileSize, (TileType)index, path);
 			tileMasterList.push_back (temp);
@@ -90,7 +90,10 @@ Level* LevelManager::LoadLevel (const std::string& path) {
 	std::ifstream input (path);
 
 	//Ensure it opened
-	if (!input) printf ("Warning! Could not open file: %s\n", path.c_str ());
+	if (!input) {
+		printf ("Warning! Could not open file: %s\n", path.c_str ());
+		return nullptr;
+	}
 
 	//Get the contents
 	std::string fileContents;
@@ -115,6 +118,10 @@ Level* LevelManager::LoadLevel (const std::string& path) {
 	
 
 	Level* level = new Level (width, height, LoadTileSet (tileset->first_attribute ("path")->value ()), root->first_attribute ("name")->value ());
+	if(!level) {
+		printf("Error: Level allocation failed\n");
+		return nullptr;
+	}
 
 	std::string tiles = root->first_node ("tiles")->value();
 	
@@ -140,6 +147,15 @@ Level* LevelManager::LoadLevel (const std::string& path) {
 			}
 		}
 	}
+
 	printf ("Success: Loaded level: %s!\n", path.c_str ());
 	return level;
+}
+
+void LevelManager::LevelDeallocator::operator() (const std::pair<std::string, Level*> &p) const {
+	delete p.second;
+}
+
+void LevelManager::TileDeallocator::operator() (const Tile* p) const {
+	delete p;
 }

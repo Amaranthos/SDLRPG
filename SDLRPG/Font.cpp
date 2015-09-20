@@ -7,7 +7,8 @@ Font::Font (): font(nullptr) {
 }
 
 Font::~Font () {
-	delete font;
+	// delete font;
+	TTF_CloseFont(font);
 	font = nullptr;
 }
 
